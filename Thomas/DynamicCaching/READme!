@@ -1,0 +1,15 @@
+----____----____----____----____----____----____----____----____----____----____
+____----____----____----____----____----____----____----____----____----____----
+
+Here is your Dynamic caching function.
+
+The only thing you need to change here is the configureConversation.json
+You need to enter in this file YOUR OWN information and save it.
+
+The function writeAll.py reads this file and uses the information to get your
+information.
+
+use "pip install -r requirements.txt" to install pythons dependencies
+				
+----____----____----____----____----____----____----____----____----____----____
+____----____----____----____----____----____----____----____----____----____----

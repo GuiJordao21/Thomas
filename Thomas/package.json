@@ -1,0 +1,27 @@
+{
+  "name": "conversation",
+  "description": "TJBot conversation recipe",
+  "version": "0.0.1",
+  "author": "TJBot <tjbot@us.ibm.com>",
+  "bugs": {
+    "url": "https://github.com/ibmtjbot/tjbot/issues"
+  },
+  "dependencies": {
+    "request": "^2.83.0",
+    "tjbot": "latest"
+  },
+  "main": "conversation.js",
+  "homepage": "https://github.com/ibmtjbot/tjbot/tree/master/recipes/conversation",
+  "keywords": [
+    "tjbot"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ibmtjbot/tjbot.git"
+  },
+  "scripts": {
+    "start": "node conversation.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
