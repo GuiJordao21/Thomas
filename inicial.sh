@@ -1,9 +1,9 @@
 #!/bin/bash
 
-node /home/pi/tjbot_github/Thomas/conversation.js
+node /home/pi/Thomas/Thomas/conversation.js
 
 if [ $? -eq 1 ]
 	then
-		/home/pi/tjbot_github/inicial.sh &
+		/home/pi/Thomas/inicial.sh &
 		exit
 fi

@@ -56,7 +56,7 @@ var intencao = '';
 
 var conf = 0;
 //we need this URL to send posts and update the website
-var url = 'http://9.18.180.211:3001/';
+var url = 'http://xxx.xxx.xxx.xxx:3001/';
 
 var adi = 0;
 

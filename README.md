@@ -10,11 +10,11 @@ You have two main directories on your Thomas Project.
 
 ## You will run this step ON YOUR PC, NOT ON RASPBERRY PI3.
 
-Clone the repository on your pc. The folder `servidor100/` contains your server. Here you will recieve posts from your bot, and the screen will be updated.
+Clone the repository on your pc. The folder `cd Thomas/servidor100/` contains your server. Here you will recieve posts from your bot, and the screen will be updated.
 
 <img src="images/main-server-screen.png">
 
-First you need to cd into `servidor100/`, install the `requirements.txt` and have python3 installed. The first command you will use on cmd/terminal is:
+First you need to install the `requirements.txt` and have python3 installed. The first command you will use on cmd/terminal is:
 ```
 pip install -r requirements.txt
 ```
@@ -86,7 +86,7 @@ Again, after cloning the repo in Raspberry Pi, cd into `Thomas/` and install the
 pip3 install -r requirements.txt
 ```
 
-You will need to input your credentials on */home/pi/Desktop/Thomas/Thomas/config.js* and
+You will need to input your credentials on */home/pi/Thomas/Thomas/config.js* and
 *config.default.js*, insert your Speech to Text (STT) and Text to Speech (TTS) username and password also your Conversation username, password and **WORKSPACE ID**.
 
 On */home/pi/Thomas/Thomas/generateAudio.js* and on */home/pi/Thomas/Thomas/geraAudio.js* you will also need to input your Text To Speech (TTS) credentials. 
