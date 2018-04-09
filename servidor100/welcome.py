@@ -4,6 +4,7 @@ import json
 from flask import Flask, jsonify, request, redirect, url_for, send_file, render_template
 import jinja2
 import requests
+from watson_developer_cloud import DiscoveryV1
 app = Flask(__name__)
 
 sites = {
@@ -54,6 +55,22 @@ def url():
 @app.route('/init', methods=['GET'])
 def init():
 	return app.send_static_file('celebration.html')
+
+# @app.route('/farmacia', method=['POST'])
+# def farmacia():
+# 	return app.send_static_file('farmacia.html')
+
+# @app.route('/hospital', method=['POST'])
+# def farmacia():
+# 	return app.send_static_file('hospital.html')
+
+# @app.route('/emergencia', method=['POST'])
+# def farmacia():
+# 	return app.send_static_file('emergencia.html')
+
+#"hospital":"/hospital",
+#"emergencia":"/emergencia",
+#"farmacia":"/farmacia"
 
 def disc(frase):
 	r = requests.get('https://gateway.watsonplatform.net/discovery/api/v1/environments/<env>/collections/<col>/query?version=2017-11-07&deduplicate=false&highlight=true&passages=true&passages.count=5&query='+frase, auth=('<user>', '<pass>'))

@@ -5,43 +5,34 @@ function comparar(str){
 
 	/*
 	 * here we iterate through the json object to check for keywords.
+	 * 
+	 * this section is very personal for each case, so, is very important for you and for your bot performance,
+	 * you need to update this with YOUR OWN and intents keywords
 	 * */
 
 	keyWords = {
-	  "ai_primeiroPasso":"primeiro passo",
-	  "bitcoin":"bitcoin",
-	  "bom_dia_icc":"",
-	  "bradesco":"bradesco",
-	  "clima":"clima",
-	  "ctr":"primeiro nome",
-	  "data_criacao":"criada",
-	  "Data_IBM_Brasil":"chegou",
-	  "demo_trem":"inicie",
-	  "dolar_hoje":"dolar",
-	  "fundador_IBM":"fundou",
-	  "homem_na_lua":"lua",
-	  "IBM_primeira_maquina":"maquina",
-	  "IBM_RJ":"janeiro",
-	  "investimento":"investir",
-	  "locais_comemoracao_100anos":"comemorados",
-	  "missao":"missão",
-	  "noticias":"notícias",
-	  "presidente_IBM":"presidente",
-	  "quem_participou":"quem participou",
-	  "sicredi":"sicredi",
-	  "smarter_planet":"iniciativa",
-	  "think":"think",
-	  "valentim_boucas":"valentim",
-	  "watson_ai":"watson"
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
+	  "intent":"keyword",
 	}
 	
 	var keysFromJson = Object.keys(keyWords);
 	var intent = "none";
+
+	/**
+	 * if the keyword is inside this JSON you can use this to reduce latency
+	 */
 	
 	for(var i=0;i<keysFromJson.length;i++){
 		if(str.includes(keyWords[keysFromJson[i]])){
 			intent = keysFromJson[i];
-			console.log(intent)
+			console.log(intent);
 		}
 	}
 

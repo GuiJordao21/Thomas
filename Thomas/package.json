@@ -7,8 +7,6 @@
     "url": "https://github.com/ibmtjbot/tjbot/issues"
   },
   "dependencies": {
-    "natural": "^0.5.6",
-    "promise": "^8.0.1",
     "request": "^2.83.0",
     "tjbot": "latest"
   },

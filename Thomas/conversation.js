@@ -19,8 +19,10 @@ var config = require('./config');
 var jaroWinkler = require('./jaroWinklerDistance');
 var analise = require('./analiseDeIntencao');
 var generate = require('./generateAudios');
+var singleAudio = require('./singleAudio');
 var request = require('request');
 var Promise = require('promise');
+var fs = require('fs');
 const { spawn } = require('child_process');
 
 // obtain our credentials from config.js
@@ -87,7 +89,7 @@ tj.listen(function(msg) {
 		
 		//if the message includes the bots name, we play a beep sound
 		if (msg.includes(tj.configuration.robot.name)) {
-				spawn('aplay',['/home/pi/tjbot_github/audio/bipe.wav']);
+				spawn('aplay',['/home/pi/Thomas/audio/bipe.wav']);
 				control = 1;
 			}
 		}
@@ -106,7 +108,7 @@ tj.listen(function(msg) {
 							/*
 							 * see function postar for more information
 							 * */
-							postar().then(
+							postar(response).then(
 								console.log("horay!!")
 								/*
 								 * All this process is done to reduce latency.
@@ -125,7 +127,7 @@ tj.listen(function(msg) {
 	}    
 });
 
-function postar(){
+function postar(arrayDasRespostas){
 	return new Promise((resolve, reject) => {
 		//this is the information that will be send to the server		
 		var data = {"key":intencao};
@@ -147,13 +149,23 @@ function postar(){
 		 * watson disacovery content
 		 * */
 		if (control == 2){
-			tj.play("/home/pi/tjbot_github/audio/estudar.wav");
+			tj.play("/home/pi/Thomas/audio/estudar.wav");
 		}else{
-			/*
-			 * if reaches this place of the code, it means that the bot found the conversation 
-			 * answer acceptable and will load a .wav file with the intent name and play the answer
-			 * */
-			tj.play("/home/pi/tjbot_github/audio/"+intencao+".wav");
+			/**
+			 * This function is responsible for creating individual audios.
+			 */
+			var check = fs.existsSync('/home/pi/Thomas/audio/'+arrayDasRespostas[0]+'.wav');
+			if (check == true){
+				tj.play("/home/pi/Thomas/audio/"+arrayDasRespostas[0]+".wav");
+			}else{
+				singleAudio.singleAudio(arrayDasRespostas).then(response => {
+					/*
+					* if reaches this place of the code, it means that the bot found the conversation 
+					* answer acceptable and will load a .wav file with the intent name and play the answer
+					* */
+					tj.play("/home/pi/Thomas/audio/"+arrayDasRespostas[0]+".wav");
+				});
+			}
 		}
 		adi = 0;
 		control = 0;
@@ -188,8 +200,12 @@ function comparar(msg){
 					 *   
 					 * */
 					if (conf > 0.6){
+						resp = response.object.output.text[0];
 						intencao = response.object.intents[0].intent;
-						resolve(intencao);
+
+						arrayComRespostas = [intencao, resp];
+
+						resolve(arrayComRespostas);
 					}else{
 						/*
 						 * if this is lower then 0.6, we use the hole sentence as information to send 
@@ -219,6 +235,6 @@ function analisa(msg){
 			intencao = adi;
 			console.log(intencao);
 			
-			resolve(adi)
+			resolve(adi);
 		});
 	}
