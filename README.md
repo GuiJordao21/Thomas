@@ -22,7 +22,7 @@ if you are on linux:
 ```
 pip3 install -r requirements.txt
 ```
-To use this server full capabilities, you need to use Watson Discovery services and update line 100 of `welcome.py` and insert your credentials:
+To use this server full capabilities, you need to use Watson Discovery services and update line 76 of `welcome.py` and insert your credentials:
 - <env> environment id;
 - <col> collection id;
 - <user>username;
