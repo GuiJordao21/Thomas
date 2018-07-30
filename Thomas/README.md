@@ -12,7 +12,7 @@ To use this recipe you need 3 things:
 You can also use a powerbank to power your voice based assistant and let it wireless
 
 ## Build and Run
-First, make sure you have configured your Raspberry Pi for Thomas by following the [instructions on README.md here](https://github.ibm.com/Guilherme-Goncalves/Thomas).
+First, make sure you have configured your Raspberry Pi for Thomas by following the [instructions on README.md here](https://github.com/GuiJordao21/Thomas/blob/master/README.md).
 
 Next, go to the `Thomas/Thomas/` folder and install the dependencies.
 
