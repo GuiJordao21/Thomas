@@ -114,9 +114,6 @@ When done, remove the cloned directory cd to `~/` and run the following commands
 Edit the following files with the credentials of the services you created before (Assistant, STT, TTS):
 ````
 ~/Thomas/Thomas/config.js
-~/Thomas/Thomas/config.default.js
-~/Thomas/Thomas/generateAudio.js
-~/Thomas/Thomas/geraAudio.js
 ~/Thomas/Thomas/DynamicCaching/configureConversation.json
 ````
 <img src="images/js-credentials.png">

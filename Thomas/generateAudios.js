@@ -1,5 +1,6 @@
 var TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 var fs = require('fs');
+var config = require('./config');
 var spawn = require('child_process').spawn;
 
 /*
@@ -46,6 +47,10 @@ function controlarAudios(arrayJsons){
 		newAnswers = arrayJsons[1]; 
 
 		var keysFromJson = Object.keys(newAnswers);
+		var text_to_speech = new TextToSpeechV1({
+						username : config.credentials.text_to_speech.username,
+						password : config.credentials.text_to_speech.password
+					});
 
 		fs.stat('../sys_control',function(err, stat){
 			if(err == null){
@@ -59,10 +64,6 @@ function controlarAudios(arrayJsons){
 					if(resp1 == resp2){
 						console.log("Both answers are the same.");
 					}else{
-						var text_to_speech = new TextToSpeechV1({
-							username:'<username>',
-							password:'<password>'
-						});
 						var params = {
 								text: resp2,
 								voice: 'pt-BR_IsabelaVoice',
@@ -84,11 +85,6 @@ function controlarAudios(arrayJsons){
 			}else{
 				for(i=0;i<keysFromJson.length;i++){
 					var resp1 = answers[keysFromJson[i]];
-						
-					var text_to_speech = new TextToSpeechV1({
-						username:'<username>',
-						password:'<password>'
-					});
 
 					var params = {
 							text: resp1,
