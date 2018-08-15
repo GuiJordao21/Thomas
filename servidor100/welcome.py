@@ -56,22 +56,6 @@ def url():
 def init():
 	return app.send_static_file('celebration.html')
 
-# @app.route('/farmacia', method=['POST'])
-# def farmacia():
-# 	return app.send_static_file('farmacia.html')
-
-# @app.route('/hospital', method=['POST'])
-# def farmacia():
-# 	return app.send_static_file('hospital.html')
-
-# @app.route('/emergencia', method=['POST'])
-# def farmacia():
-# 	return app.send_static_file('emergencia.html')
-
-#"hospital":"/hospital",
-#"emergencia":"/emergencia",
-#"farmacia":"/farmacia"
-
 def disc(frase):
 	r = requests.get('https://gateway.watsonplatform.net/discovery/api/v1/environments/<env>/collections/<col>/query?version=2017-11-07&deduplicate=false&highlight=true&passages=true&passages.count=5&query='+frase, auth=('<user>', '<pass>'))
 	query = r.json()
@@ -110,4 +94,4 @@ port = os.getenv('PORT', '3001')
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=int(port))
-# app.run(host='localhost', port=int(port))
+	# app.run(host='localhost', port=int(port))

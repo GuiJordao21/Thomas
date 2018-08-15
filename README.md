@@ -1,125 +1,142 @@
-# tjbot-thomas
-
-(to follow this tutorial, you need to have raspbian installed on your raspi sd card.)
-
-**link to the video >>**  https://youtu.be/jxWP9CqcVe0
+# Thomas: TJBot based assistant
 
 Interact with tjbot in your own language, a voice based assistant fully customizable with a second screen.
 
-You have two main directories on your Thomas Project.
+**link to the video >>**  https://youtu.be/jxWP9CqcVe0
 
-## You will run this ON YOUR PC, NOT ON RASPBERRY PI3.
+## This demo will need to be installed on your server and on your raspberry.
 
-Clone the repository on your pc. The folder `servidor100/` contains your server. Here you will recieve posts from your bot, and the screen will be updated.
+# Part 0: Requirements
+
+To run this demo you need to have instances of the following services deployed on your Bluemix Account:
+
+* <a href="https://console.bluemix.net/docs/services/conversation/getting-started.html#gettingstarted">Watson Assistant</a>
+* <a href="https://console.bluemix.net/docs/services/speech-to-text/getting-started.html#gettingStarted">Watson Speech to Text</a>
+* <a href="https://console.bluemix.net/docs/services/text-to-speech/getting-started.html#gettingStarted">Watson Text to Speech</a>
+* <a href="https://console.bluemix.net/docs/services/discovery/getting-started-tool.html">Watson Discovery (optional)</a>
+
+# Part 1: Server
+Clone the repository on your pc. Anywhere you like.
+
+```
+> git clone https://github.com/GuiJordao21/Thomas.git
+```
+
+ The folder `servidor100/` contains your server. Here you will recieve posts from your bot, and it will serve the screen that will be updated when it responds.
 
 <img src="images/main-server-screen.png">
 
-First you need to cd into `servidor100/`, install the `requirements.txt` and have python3 installed. The first command you will use on cmd/terminal is:
+Go into `servidor100/` and install the requirements:
+<br><small> Obs: Make sure pip is referring to your python3 installation</small>
 ```
-pip install -r requirements.txt
+> cd servidor100/
+> pip3 install -r requirements.txt
 ```
-if you are on linux:
-```
-pip3 install -r requirements.txt
-```
-To use this server full capabilities, you need to use Watson Discovery services and update line 76 of `welcome.py` and insert your credentials:
-- <env> environment id;
-- <col> collection id;
-- <user>username;
-- <pass>password.
+Maybe, on windows, the command will be only 
+````> pip install -r requirements.txt````
 
-You also need to update the intentions to point to the correct urls . We're implementing a function to do this automatically.
-
-The most important file here is your server itself, called 'welcome.py'. To use your server, you need to cd into the directory and use:
-```
-python welcome.py
-```
-or, if you're on linux:
+To run the server, you should run the following command:
 ```
 python3 welcome.py
 ```
 
-After running the command above, you will open the cmd/terminal and use ipconfig (windows) / ifconfig (linux) to get the ip addres of the
-server. Just keep this for you right now, we're going to use it later.
+After that you can access your homepage by opening the url ```http://localhost:3000```, or using the local IP Address ```http://<ip-address>:3000``` so other computers can access it.
 
-<img src="images/ipexample.png">
+## Optional
+If you want to enable <b>Watson Discovery</b> on this demo, you should edit `line 60` of `welcome.py` and insert your credentials, environment ID and colletion ID.
 
-After you set everything here, we're finally going to Raspberry. I recommend a Raspberry Pi3 model B with raspbian Jessie or Stretch because
-I've tested only on these versions.
+# Displayed websites on second screen
+You also need to update the intentions to point to the correct urls.
 
-## From now on, use your raspi!
+On line 10 of your ````welcome.py```` file, you have a JSON object with a combination of keys and values, the key being an intent (defined by you on your own watson assistant service) and the value is a web site url.
 
-Open your Raspberry terminal (**ctrl+alt+t** or click on the icon).
-
-The first thing you're going to do is using these commands:
+Ex:
 ```
-sudo apt-get update
-sudo apt-get upgrade
-```
-This might take a while, so be patience, especially if this is the first time you are doing this.
-
-After everything is done, you will install these programs:
-
-```
-sudo apt-get install libffi-dev python3 gcc musl-dev libssl-dev
-pip3 install watson-developer-cloud
+sites = {
+    'wikipedia':'https://www.wikipedia.org/',
+    'weather':'https://weather.com/'
+}
 ```
 
-The simplest way to configure your Raspberry pi3 is to use this command:
+You can use how many web sites you want in here.
 
+---
+
+# Part 2: Raspberry
+
+## Dependencies
+
+First of all, you should update your operating system: 
+
+On the terminal, run:
+```
+> sudo apt-get update
+> sudo apt-get upgrade
+> sudo apt-get install libffi-dev python3 gcc musl-dev libssl-dev
+> pip3 install watson-developer-cloud
+```
+## Configuring the Software
+On the terminal, run:
 ```
 curl -sL http://ibm.biz/tjbot-bootstrap | sudo sh -
 ```
 <img src="images/curl-command.png">
 
-If you don't have curl installed run: 
-```
-sudo apt-get install curl
-```
+When you run this command, you will need to answer some questions, do that:
 
-after, you will start a .sh script to setup your raspi.
-You will do the required setup to use just you mic and the audio output, without LED and without the camera. You need to set the name of 
-your bot here (my bot's name for example is Amanda). Do not clone tjbot repo to your Raspberry.
+* "Would you like to use this Raspberry Pi for TJBot? [Y/n]" 
+    choose Yes.
+* "Please enter a name for your TJBot. This will be used for the hostname of your Raspberry Pi." 
+    Just choose your robot's name.
+* "Disable ipv6? [y/N] " 
+    Choose Yes.
+* "Enable Google DNS? [y/N]: " 
+    Choose Yes.
+* "Force locale to US English (en-US)? [y/N] " 
+    Choose No.
+* "Proceed with apt-get dist-upgrade? [Y/n] " 
+    If you choose yes here, your OS will upgrade the system and then remove some packages. This is a little bit dangerous and we recommend you DO NOT do this, so choose No.
+* "Would you like to install a newer version of Node.js? [Y/n] "
+    Before answer this question, open another terminal window and use the command ````node -v```` to check your versio of nodeJS. With you have version 7 or higher, you can choose No, but, if is an inferior version, you need to choose Yes.
+* "Enable camera? [y/N] "
+    This project do not uses Raspi camera, so choose No on this answer.
+* read -p "Where should we clone it to? (default: ~/Desktop/tjbot):"
+    You will have to clone this repo, but don't worry about that, you can just delete it after this.
+* "Disable sound kernel modules? [Y/n] "
+    DO NOT disable kernel modules.
 
-After doing this, clone tjbot-thomas repo on `/home/pi/`.
-(Maybe your path will be diferent, like `/home/name-of-your-pi`)
+When done, remove the cloned directory cd to `~/` and run the following commands on the raspberry terminal:
 
-You will need to input your credentials on */home/pi/Desktop/Thomas/Thomas/config.js* and
-*config.default.js*, insert your Speech to Text (STT) and Text to Speech (TTS) username and password also your Conversation username,
-password and **WORKSPACE ID**.
-
-On */home/pi/Thomas/Thomas/generateAudio.js* and on */home/pi/Thomas/Thomas/geraAudio.js* you will also need to
-input your Text To Speech (TTS) credentials. 
-
+````
+> cd ~
+> git clone https://github.com/GuiJordao21/Thomas.git
+````
+Edit the following files with the credentials of the services you created before (Assistant, STT, TTS):
+````
+~/Thomas/Thomas/config.js
+~/Thomas/Thomas/config.default.js
+~/Thomas/Thomas/generateAudio.js
+~/Thomas/Thomas/geraAudio.js
+~/Thomas/Thomas/DynamicCaching/configureConversation.json
+````
 <img src="images/js-credentials.png">
 
-One of the most important things now is to open */home/pi/Thomas/Thomas/conversation.js*  and change the **var url** on line 59
-and insert over there your ip address and the port that the server is running. (For example: "http://192.168.192.1:3001/")
+Change the `line 59` of this file with the server ip address:
 
-use the command:
-```
-npm install
-```
-on this same directory (maybe you will need to install some modules even after that, so pay attention on this step).
+````
+~/Thomas/Thomas/conversation.js
+````
 
-Go to */home/pi/Thomas/Thomas/DynamicCaching/configureConversation.json* and add your conversation credentials there too
-and run the `writeAll.py` script with:
+Then do this:
 ```
-python3 writeAll.py
+> cd ~/Thomas/Thomas/DynamicCaching
+> npm install
+> python3 writeAll.py
+> cd ~/Thomas/Thomas
+> chmod 744 inicial.sh
+> ./inicial.sh
 ```
-This will create some JSON files with your conversation content and will help you with the dynamic caching we use on our system.
-After this is all set up, you can get started!!!
 
-Go to */home/pi/Thomas/Thomas/*
+Obs: You should add the `~/Thomas/Thomas/inicial.sh` to your crontab (````@reboot ~/Thomas/Thomas/inicial.sh````) if you want it to start everytime with the operating system.
 
-and use:
-```
-chmod 744 inicial.sh
-```
-to make this script executable and voila, you're done!!!
-
-To run, on this same folder, use:
-```
-./inicial.sh
-```
- and the script will start.
+Now you have Thomas running, have fun!
