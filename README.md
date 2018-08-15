@@ -2,6 +2,13 @@
 
 Interact with tjbot in your own language, a voice based assistant fully customizable with a second screen.
 
+## Hardware
+To use this recipe you need 3 things:
+- 1 Raspberry Pi 3 model B;
+- 1 Speaker (P2 or USB entrance, it doesn't matter);
+- 1 USB Microphone;
+- 1 powerbank or any other kind of power supply;
+
 **link to the video >>**  https://youtu.be/jxWP9CqcVe0
 
 ## This demo will need to be installed on your server and on your raspberry.
@@ -22,6 +29,8 @@ Clone the repository on your pc. Anywhere you like.
 > git clone https://github.com/GuiJordao21/Thomas.git
 ```
 
+If you don't have git on your pc, <a href="https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/">install it</a>
+
  The folder `servidor100/` contains your server. Here you will recieve posts from your bot, and it will serve the screen that will be updated when it responds.
 
 <img src="images/main-server-screen.png">
@@ -35,7 +44,7 @@ Go into `servidor100/` and install the requirements:
 Maybe, on windows, the command will be only 
 ````> pip install -r requirements.txt````
 
-To run the server, you should run the following command:
+To run the server, you should run the following command inside your servidor100/ directory:
 ```
 python3 welcome.py
 ```
@@ -48,7 +57,7 @@ If you want to enable <b>Watson Discovery</b> on this demo, you should edit `lin
 # Displayed websites on second screen
 You also need to update the intentions to point to the correct urls.
 
-On line 10 of your ````welcome.py```` file, you have a JSON object with a combination of keys and values, the key being an intent (defined by you on your own watson assistant service) and the value is a web site url.
+On line 10 of your ````servidor100/welcome.py```` file, you have a JSON object with a combination of keys and values, the key being an intent (defined by you on your own watson assistant service) and the value is a web site url.
 
 Ex:
 ```
@@ -124,6 +133,12 @@ Change the `line 59` of this file with the server ip address:
 ~/Thomas/Thomas/conversation.js
 ````
 
+Next, go to the `Thomas/Thomas/` folder and install the dependencies. (Pay attention when running this command, because some modules maybe missing, so you will need to read the messages on your screen and install the modules using ```npm install <module name>```)
+    ```
+    $ cd Thomas/Thomas/
+    $ npm install
+    ```
+
 Then do this:
 ```
 > cd ~/Thomas/Thomas/DynamicCaching
@@ -131,9 +146,9 @@ Then do this:
 > python3 writeAll.py
 > cd ~/Thomas/Thomas
 > chmod 744 inicial.sh
-> ./inicial.sh
+> sudo ./inicial.sh
 ```
 
-Obs: You should add the `~/Thomas/Thomas/inicial.sh` to your crontab (````@reboot ~/Thomas/Thomas/inicial.sh````) if you want it to start everytime with the operating system.
+Obs: You should add the `~/Thomas/inicial.sh` to your crontab (````@reboot ~/Thomas/Thomas/inicial.sh````) if you want it to start everytime with the operating system.
 
 Now you have Thomas running, have fun!

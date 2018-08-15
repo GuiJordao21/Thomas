@@ -3,12 +3,6 @@
 
 This recipe uses the [Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html) , [Watson Text to Speech](https://www.ibm.com/watson/developercloud/text-to-speech.html) and [Watson Speech To Text](https://www.ibm.com/watson/services/speech-to-text.html) services to turn TJ into an voice based assistant, and my favorite thing, you can personilize it with every kind of information you want and in every language Watson services supports.
 
-## Hardware
-To use this recipe you need 3 things:
-- 1 Raspberry Pi 3 model B;
-- 1 Speaker (P2);
-- 1 USB Microphone;
-
 You can also use a powerbank to power your voice based assistant and let it wireless
 
 ## Build and Run
