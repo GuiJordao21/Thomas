@@ -1,6 +1,7 @@
 # Thomas: TJBot based assistant
 
 Interact with tjbot in your own language, a voice based assistant fully customizable with a second screen.
+TJbot is an open source IBM's project. See <a href="https://github.com/ibmtjbot/tjbot">this</a> link for more information.
 
 ## Hardware
 To use this recipe you need 3 things:
@@ -51,10 +52,7 @@ python3 welcome.py
 
 After that you can access your homepage by opening the url ```http://localhost:3000```, or using the local IP Address ```http://<ip-address>:3000``` so other computers can access it.
 
-## Optional
-If you want to enable <b>Watson Discovery</b> on this demo, you should edit `line 60` of `welcome.py` and insert your credentials, environment ID and colletion ID.
-
-# Displayed websites on second screen
+## Displayed websites on second screen
 You also need to update the intentions to point to the correct urls.
 
 On line 10 of your ````servidor100/welcome.py```` file, you have a JSON object with a combination of keys and values, the key being an intent (defined by you on your own watson assistant service) and the value is a web site url.
@@ -68,6 +66,9 @@ sites = {
 ```
 
 You can use how many web sites you want in here.
+
+## Optional
+If you want to enable <b>Watson Discovery</b> on this demo, you should edit `line 60` of `welcome.py` and insert your credentials, environment ID and colletion ID.
 
 ---
 
@@ -114,7 +115,7 @@ When you run this command, you will need to answer some questions, do that:
 * "Disable sound kernel modules? [Y/n] "
     DO NOT disable kernel modules.
 
-When done, remove the cloned directory cd to `~/` and run the following commands on the raspberry terminal:
+When done, remove the cloned directory, cd to `~/` and run the following commands on the raspberry terminal:
 
 ````
 > cd ~
