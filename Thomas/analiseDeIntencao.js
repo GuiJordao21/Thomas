@@ -6,8 +6,8 @@ function comparar(str){
 	/*
 	 * here we iterate through the json object to check for keywords.
 	 * 
-	 * this section is very personal for each case, so, is very important for you and for your bot performance,
-	 * you need to update this with YOUR OWN and intents keywords
+	 * this section is very personal for each case, so, is very important for you and for your bot performance.
+	 * you need to update this with YOUR OWN intents and keywords.
 	 * */
 
 	keyWords = {
