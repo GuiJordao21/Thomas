@@ -14,6 +14,8 @@ To use this recipe you need 3 things:
 
 ## This demo will need to be installed on your server and on your raspberry.
 
+---
+
 # Part 0: Requirements
 
 To run this demo you need to have instances of the following services deployed on your Bluemix Account:
@@ -22,6 +24,8 @@ To run this demo you need to have instances of the following services deployed o
 * <a href="https://console.bluemix.net/docs/services/speech-to-text/getting-started.html#gettingStarted">Watson Speech to Text</a>
 * <a href="https://console.bluemix.net/docs/services/text-to-speech/getting-started.html#gettingStarted">Watson Text to Speech</a>
 * <a href="https://console.bluemix.net/docs/services/discovery/getting-started-tool.html">Watson Discovery (optional)</a>
+
+---
 
 # Part 1: Server
 Clone the repository on your pc. Anywhere you like.
@@ -145,11 +149,11 @@ Then do this:
 > cd ~/Thomas/Thomas/DynamicCaching
 > npm install
 > python3 writeAll.py
-> cd ~/Thomas/Thomas
+> cd ~/Thomas
 > chmod 744 inicial.sh
 > sudo ./inicial.sh
 ```
 
-Obs: You should add the `~/Thomas/inicial.sh` to your crontab (````@reboot ~/Thomas/Thomas/inicial.sh````) if you want it to start everytime with the operating system.
+Obs: You should add the `~/Thomas/inicial.sh` to your crontab (````@reboot ~/Thomas/inicial.sh````) if you want it to start everytime with the operating system.
 
 Now you have Thomas running, have fun!
