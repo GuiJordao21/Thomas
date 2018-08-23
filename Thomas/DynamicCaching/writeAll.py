@@ -20,7 +20,10 @@ def main():
     #calling function that lists the intents
     dic_intencao = intents.listar(config)
     
-    arquivo = open("intents.json",'w')
+    if Path("intents.json").exists():
+        arquivo = open("newIntents.json",'w')
+    else:
+        arquivo = open("intents.json",'w')
         
     dic_intencao_json = json.dumps(dic_intencao, indent=2).encode('utf-8')
 
@@ -34,7 +37,10 @@ def main():
     #Here, we list the examples from conversation
     dic_exemplo = examples.listar(dic_intencao, config)
     
-    arquivo = open("examples.json",'w')
+    if Path("examples.json").exists():
+        arquivo = open("newExamples.json",'w')
+    else:
+        arquivo = open("examples.json",'w')
 
     dic_examples_json = json.dumps(dic_exemplo, indent=2).encode('utf-8')
 
