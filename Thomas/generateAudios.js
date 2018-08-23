@@ -1,13 +1,16 @@
 var TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 var fs = require('fs');
 var config = require('./config');
-var spawn = require('child_process').spawn;
+var spawn = require('child_process').spawnSync;
+
+audioGenerator();
 
 /*
  * This is the function that is called from conversation and resolve all the others
  * */
 function audioGenerator() {
-	writeAll().then(result => {return checkFile().then(arrayJsons => {
+	writeAll().then(result => {
+		return checkFile().then(arrayJsons => {
 			return controlarAudios(arrayJsons).then(done =>{
 				console.log(done);
 			});
@@ -34,7 +37,7 @@ function writeAll(){
  * This is where we generate audios Dynamically in case
  * the person add some other answer to it's workspace on conversation
  * 
- * We compare the two answer files to if there is any kind of new answer, if there is,
+ * We compare the two answer files to see if there is any kind of new answer, if there is,
  * we generate a .wav file just to that specific answer.
  * 
  * If this is the first time that the person is using this bot, the function will generate all audio files
@@ -58,9 +61,6 @@ function controlarAudios(arrayJsons){
 					var resp1 = answers[keysFromJson[i]];
 					var resp2 = newAnswers[keysFromJson[i]];
 
-					console.log(resp1);
-					console.log(resp2);
-
 					if(resp1 == resp2){
 						console.log("Both answers are the same.");
 					}else{
@@ -81,7 +81,7 @@ function controlarAudios(arrayJsons){
 						});
 					}
 				}
-				resolve("code = if");
+				resolve();
 			}else{
 				for(i=0;i<keysFromJson.length;i++){
 					var resp1 = answers[keysFromJson[i]];
@@ -107,7 +107,7 @@ function controlarAudios(arrayJsons){
 					stream.write("IMPORTANT SYSTEM FILE, DO NOT REMOVE!");
 					stream.end();
 				});
-				resolve("code = else");
+				resolve();
 			}
 		});
 	});
@@ -127,21 +127,17 @@ function checkFile(){
 	return new Promise ((resolve,reject)=>{
 		var check = fs.existsSync('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json');
 		var answers = JSON.parse(fs.readFileSync('/home/pi/Thomas/Thomas/DynamicCaching/answers.json' ,'utf8'));
-		if(check == true){
-			var newAnswers = JSON.parse(fs.readFileSync('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json' ,'utf8'));
-			arrayResp = [answers,newAnswers];
-			resolve(arrayResp);
-		}else{
-			fs.writeFile('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json', answers, 'utf8', function(err){
+		if(check != true){
+			fs.writeFileSync('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json', answers, 'utf8', function(err){
 				if(err){
 					return console.log(err);
 				}
 				console.log("file was saved!");
 			});
-			var newAnswers = JSON.parse(fs.readFileSync('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json' ,'utf8'));
-			arrayResp = [answers,newAnswers];
-			resolve(arrayResp);
 		}
+		var newAnswers = JSON.parse(fs.readFileSync('/home/pi/Thomas/Thomas/DynamicCaching/newAnswers.json' ,'utf8'));
+		arrayJsons = [answers,newAnswers];
+		resolve(arrayJsons);
 	});
 }
 
