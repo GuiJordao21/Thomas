@@ -1,3 +1,4 @@
+var config = require('./config');
 var TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 var fs = require('fs');
 

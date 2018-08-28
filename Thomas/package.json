@@ -7,8 +7,11 @@
     "url": "https://github.com/ibmtjbot/tjbot/issues"
   },
   "dependencies": {
+    "natural": "^0.6.1",
+    "promise": "^8.0.1",
     "request": "^2.83.0",
-    "tjbot": "latest"
+    "tjbot": "latest",
+    "watson-developer-cloud": "^3.9.0"
   },
   "main": "conversation.js",
   "homepage": "https://github.com/ibmtjbot/tjbot/tree/master/recipes/conversation",
