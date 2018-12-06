@@ -29,7 +29,7 @@ const { spawn } = require('child_process');
 var credentials = config.credentials;
 
 // obtain user-specific config
-var WORKSPACEID = config.conversationWorkspaceId;
+var WORKSPACEID = config.workspaceId;
 
 // these are the hardware capabilities that TJ needs for this recipe
 var hardware = ['microphone', 'speaker'];
@@ -188,6 +188,7 @@ function comparar(msg){
 			if (msg.includes(tj.configuration.robot.name)) {
 				var turn = msg.toLowerCase().replace(tj.configuration.robot.name.toLowerCase(), "");
 				tj.converse(WORKSPACEID, turn, function(response) {
+					console.log(response)
 					conf = response.object.intents[0].confidence;
 					/*
 					 * here we check the conversations confidence of the response given

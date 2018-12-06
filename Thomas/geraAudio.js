@@ -14,8 +14,8 @@ function singleAudio(arrayDasRespostas){
 	return new Promise((resolve, reject) => {
 		
 		var text_to_speech = new TextToSpeechV1({
-						username : config.credentials.text_to_speech.username,
-						password : config.credentials.text_to_speech.password
+						apikey : config.credentials.text_to_speech.apikey,
+						url : config.credentials.text_to_speech.url
 					});
 
 		var params = {

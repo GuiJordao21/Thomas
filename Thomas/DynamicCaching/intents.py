@@ -2,15 +2,16 @@ import json
 import watson_developer_cloud
 
 def listar(config):
-    conversation = watson_developer_cloud.ConversationV1(
-        username=config['username'],
-        password=config['password'],
-        version='2017-05-26'
+    assistant = watson_developer_cloud.AssistantV1(
+        iam_apikey=config['iam_apikey'],
+        version=config['version']
     )
 
-    response = conversation.list_intents(
+    response = assistant.list_intents(
         workspace_id = config['workspace_id']
-    )
+    ).get_result()
+    
+#    print(json.dumps(response, indent=2))
 
     tamanho = len(response['intents'])
     dic = {}

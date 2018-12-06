@@ -1,5 +1,5 @@
 {
-	"username":"",
-	"password":"",
+	"iam_apikey":"",
+	"version":"2018-09-20",
 	"workspace_id":""
 }

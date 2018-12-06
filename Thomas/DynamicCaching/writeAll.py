@@ -31,6 +31,8 @@ def main():
     arquivo.write(dic_intencao_json)
     arquivo.close()
     
+    print("arquivo criado")
+    
     #Here, we list the examples from conversation
     dic_exemplo = examples.listar(dic_intencao, config)
     

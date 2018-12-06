@@ -60,9 +60,9 @@ function controlarAudios(arrayJsons) {
 					if (resp1 == resp2) {
 						console.log("Both answers are the same.");
 					} else {
-						var text_to_speech = new TextToSpeechV1({
-							username : config.credentials.text_to_speech.username,
-							password : config.credentials.text_to_speech.password
+						var textToSpeech = new TextToSpeechV1({
+							iam_apikey: config.credentials.text_to_speech.apikey,
+							url: config.credentials.text_to_speech.url
 						});
 						var params = {
 							text: resp2,
@@ -90,9 +90,9 @@ function controlarAudios(arrayJsons) {
 
 					console.log(element)
 
-					var text_to_speech = new TextToSpeechV1({
-						username : config.credentials.text_to_speech.username,
-						password : config.credentials.text_to_speech.password
+					var textToSpeech = new TextToSpeechV1({
+						iam_apikey: config.credentials.text_to_speech.apikey,
+						url: config.credentials.text_to_speech.url
 					});
 
 					var params = {
@@ -101,12 +101,12 @@ function controlarAudios(arrayJsons) {
 						accept: 'audio/wav'
 					}
 
-					text_to_speech.synthesize(params, function (err, audio) {
+					textToSpeech.synthesize(params, function (err, audio) {
 						if (err) {
 							console.log(err);
 							return;
 						}
-						text_to_speech.repairWavHeader(audio);
+						textToSpeech.repairWavHeader(audio);
 						fs.writeFileSync('/home/pi/Thomas/audio/' + element + '.wav', audio);
 						console.log('audio.wav written with a corrected wav header');
 					});

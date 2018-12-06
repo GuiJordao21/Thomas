@@ -3,20 +3,21 @@ import watson_developer_cloud
 
 def listar(dic_intencao, config):
 
-    conversation = watson_developer_cloud.ConversationV1(
-        username=config['username'],
-        password=config['password'],
-        version='2017-05-26'
+    print(config)
+    
+    assistant = watson_developer_cloud.AssistantV1(
+        iam_apikey=config['iam_apikey'],
+        version=config['version']
     )
 
     dic_exemplos = {}
 
     for num in range(0, len(dic_intencao)):
 
-        response = conversation.list_examples(
+        response = assistant.list_examples(
             workspace_id = config['workspace_id'],
             intent = dic_intencao[num]
-        )
+        ).get_result()
 
         for numero in range(0,len(response['examples'])):
             dic_exemplos[(response['examples'][numero]['text'])] = dic_intencao[num]

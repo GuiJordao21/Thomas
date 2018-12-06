@@ -130,7 +130,9 @@ Edit the following files with the credentials of the services you created before
 ~/Thomas/Thomas/config.js
 ~/Thomas/Thomas/DynamicCaching/configureConversation.json
 ````
-<img src="images/js-credentials.png">
+<img src="images/config.png">
+
+<img src="images/configure.png">
 
 Change the `line 59` of this file with the server ip address:
 
