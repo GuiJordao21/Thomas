@@ -8,7 +8,7 @@ from watson_developer_cloud import DiscoveryV1
 app = Flask(__name__)
 
 sites = {
-		'intent':'https://somewebsite.com/',
+		'intent':'https://www.google.com/',
 		'another_intent':'https://anotherwebsite.com/',
 		'how_many_intentios_you_want':'http://how-many-sites-you-need/'
 		}

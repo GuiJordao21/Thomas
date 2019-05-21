@@ -1,0 +1,90 @@
+{
+  "name": "snowboy",
+  "version": "1.3.1",
+  "description": "Snowboy is a customizable hotword detection engine",
+  "main": "lib/node/index.js",
+  "typings": "lib/node/index.d.ts",
+  "binary": {
+    "module_name": "snowboy",
+    "module_path": "./lib/node/binding/{configuration}/{node_abi}-{platform}-{arch}/",
+    "remote_path": "./{module_name}/v{version}/{configuration}/",
+    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
+    "host": "https://snowboy-release-node.s3-us-west-2.amazonaws.com"
+  },
+  "scripts": {
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "node index.js",
+    "prepublish": "tsc --listFiles"
+  },
+  "author": {
+    "name": "KITT.AI",
+    "email": "snowboy@kitt.ai"
+  },
+  "contributors": [
+    {
+      "name": "Leandre Gohy",
+      "email": "leandre.gohy@hexeo.be"
+    },
+    {
+      "name": "Evan Cohen",
+      "email": "evanbtcohen@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kitt-AI/snowboy.git"
+  },
+  "gypfile": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "node-pre-gyp": "^0.6.30"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.38",
+    "aws-sdk": "2.x",
+    "nan": "^2.4.0",
+    "typescript": "^2.0.2"
+  },
+  "bugs": {
+    "url": "https://github.com/Kitt-AI/snowboy/issues"
+  },
+  "gitHead": "ed4cb38ae6020d7ae56eeeb6c161e3523b850ff6",
+  "homepage": "https://github.com/Kitt-AI/snowboy#readme",
+  "_id": "snowboy@1.3.1",
+  "_npmVersion": "5.8.0",
+  "_nodeVersion": "6.0.0",
+  "_npmUser": {
+    "name": "chenguoguo",
+    "email": "chenguoguo06@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-YvwJffy3b000IKCbqsyMWrQ6ga/qZRECgNoGb9mSkbFGX1QIG4Kv0S4pVEsUpbM1Gt4b+14BOufkdicZCsTt4g==",
+    "shasum": "220f23f026096fe5290d7919a9f0da93ccd253f2",
+    "tarball": "https://registry.npmjs.org/snowboy/-/snowboy-1.3.1.tgz",
+    "fileCount": 585,
+    "unpackedSize": 57327298,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJa1kWVCRA9TVsSAnZWagAA8kYP/2QijhUelS7A/+2zBFx3\nIx+Rch366fwQndkessfZVLCrAYW+8zDlYcWekNaie7AeaODFuz19s8T/TdVB\nDvQqkPELn/v2+dlHsCzZZGwKFEYgMXZH7AerU2z2uTmravi7yiJVJwHHjZY9\nCK5vqBLN0NWFbJ4nUqV9nKO+W8qPCpgsO9qz8iTEONn6qv1mLqanQeytkTgt\nN66FzwPtdNHS2mrWk2cU2muKtA5N95AZMkca6iqDqauW1X/Un2LIE9Skpgmh\nYMVCwLYAhElU3g4N8LVfvC86W8eO5SNerFBH+23eSeN93jalB13mOTLKNwxv\nCXpy5RFx2K8i/22EOs/WBW+VLsb6EWFcWjtQf3wHUpLhAS6JvvAsiKcUXxIG\nL9hnxhd4U+b3l+2M3TYIX1ycugOP/huSrbvtJeiJNph/805umXhVnRmVwXPO\nWkubQHDGdA9JnLOkkT+S+rJ2Fj+L+MU6Sa5nEBTG0StDIEImh5DX092GtELo\nZcIlqolUjcEQ9/h9N/opo/1pvLFS/v37kYv3ujnOvei0fW7p5djSTyjqVDNa\naFo1wyYOE/MPo2JZc7lwWh1GLdI6NZ1syxC2cj8OSnHoS6vo49SBFP9NgeU/\nozSnHNpvrPua4qE2rzJhZhz1XEJgIWMZQB8cUp79d1nBrrqEH5fzoSzLCiS3\njZME\r\n=ebYS\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "maintainers": [
+    {
+      "name": "chenguoguo",
+      "email": "chenguoguo06@gmail.com"
+    },
+    {
+      "name": "evancohen",
+      "email": "evanbtcohen@gmail.com"
+    },
+    {
+      "name": "kitt.ai",
+      "email": "kittdotai@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/snowboy_1.3.1_1523991955765_0.06949036776989392"
+  },
+  "_shasum": "220f23f026096fe5290d7919a9f0da93ccd253f2",
+  "_from": "snowboy@",
+  "_resolved": "https://registry.npmjs.org/snowboy/-/snowboy-1.3.1.tgz"
+}
